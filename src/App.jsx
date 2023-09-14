@@ -21,7 +21,7 @@ function App() {
                         <Route
                             index
                             element={
-                                <Navigate replae to="dashboard"></Navigate>
+                                <Navigate replace to="dashboard"></Navigate>
                             }
                         ></Route>
                         <Route
