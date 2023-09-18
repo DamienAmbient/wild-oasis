@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
@@ -26,45 +26,26 @@ const queryClient = new QueryClient({
 function App() {
     return (
         <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools initialIsOpen={false}></ReactQueryDevtools>
-            <GlobalStyles></GlobalStyles>
+            <ReactQueryDevtools initialIsOpen={false} />
+
+            <GlobalStyles />
             <BrowserRouter>
                 <Routes>
-                    <Route element={<AppLayout></AppLayout>}>
+                    <Route element={<AppLayout />}>
                         <Route
                             index
-                            element={
-                                <Navigate replace to="dashboard"></Navigate>
-                            }
-                        ></Route>
-                        <Route
-                            path="dashboard"
-                            element={<Dashboard></Dashboard>}
-                        ></Route>
-                        <Route
-                            path="bookings"
-                            element={<Bookings></Bookings>}
-                        ></Route>
-                        <Route
-                            path="cabins"
-                            element={<Cabins></Cabins>}
-                        ></Route>
-                        <Route path="users" element={<Users></Users>}></Route>
-                        <Route
-                            path="settings"
-                            element={<Settings></Settings>}
-                        ></Route>
-                        <Route
-                            path="account"
-                            element={<Account></Account>}
-                        ></Route>
+                            element={<Navigate replace to="dashboard" />}
+                        />
+                        <Route path="dashboard" element={<Dashboard />} />
+                        <Route path="bookings" element={<Bookings />} />
+                        <Route path="cabins" element={<Cabins />} />
+                        <Route path="users" element={<Users />} />
+                        <Route path="settings" element={<Settings />} />
+                        <Route path="account" element={<Account />} />
                     </Route>
 
-                    <Route path="login" element={<Login></Login>}></Route>
-                    <Route
-                        path="#"
-                        element={<PageNotFound></PageNotFound>}
-                    ></Route>
+                    <Route path="login" element={<Login />} />
+                    <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </BrowserRouter>
 
@@ -76,16 +57,18 @@ function App() {
                     success: {
                         duration: 3000,
                     },
-                    error: { duration: 5000 },
+                    error: {
+                        duration: 5000,
+                    },
                     style: {
                         fontSize: "16px",
                         maxWidth: "500px",
                         padding: "16px 24px",
                         backgroundColor: "var(--color-grey-0)",
-                        color: "var(--color-grey700)",
+                        color: "var(--color-grey-700)",
                     },
                 }}
-            ></Toaster>
+            />
         </QueryClientProvider>
     );
 }
